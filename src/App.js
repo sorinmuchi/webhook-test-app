@@ -1,8 +1,26 @@
 import React, { Component } from 'react';
+import fetch from 'node-fetch';
 import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  componentDidMount() {
+    fetch('/data')
+      .then(response => response.json())
+      .then(json => console.log(json));
+    
+    fetch('/data', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json; charset=utf-8",
+      },
+      body: JSON.stringify({
+        sport: 'cycling',
+        profession: 'software developer'
+      })
+    })
+  }
+
   render() {
     return (
       <div className="App">
